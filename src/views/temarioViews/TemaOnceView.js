@@ -18,7 +18,7 @@ class TemaOnceView extends Component {
           <Row className="centrado-fila">
             <Col xs="3">
               <h3 style={{ color: "red", textAlign: "center" }}>
-                Funcionamiento
+              Diferencias
               </h3>
             </Col>
             <Col xs="9">

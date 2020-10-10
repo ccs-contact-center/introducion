@@ -7,16 +7,20 @@ import Navegador from "./temarioViews/ComponentsNavTemari/Navegador";
 import BienvenidaView from "./temarioViews/BienvenidaView";
 import ObjetivoView from "./temarioViews/ObjetivoView";
 import TemarioView from "./temarioViews/TemarioView";
+
 import TemaUnoView from "./temarioViews/TemaUnoView";
 import TemaDosView from "./temarioViews/TemaDosView";
 import TemaTresView from "./temarioViews/TemaTresView";
 import TemaCuatroView from "./temarioViews/TemaCuatroView";
 import TemaCincoView from "./temarioViews/TemaCincoView";
 import TemaSeisView from "./temarioViews/TemaSeisView";
+
 import TemaSieteView from "./temarioViews/TemaSieteView";
 import TemaOchoView from "./temarioViews/TemaOchoView";
+
 import TemaNueveView from "./temarioViews/TemaNueveView";
 import TemaDiezView from "./temarioViews/TemaDiezView";
+
 import TemaOnceView from "./temarioViews/TemaOnceView";
 import TemaDoceView from "./temarioViews/TemaDoceView";
 import TemaTreceView from "./temarioViews/TemaTreceView";
@@ -26,11 +30,14 @@ import TemaDieciseisView from "./temarioViews/TemaDieciseisView";
 import TemaDiecisieteView from "./temarioViews/TemaDiecisieteView";
 
 import TemadiecinueveView from "./temarioViews/TemadiecinueveView";
+
 import TemaVeinteView from "./temarioViews/TemaVeinteView";
 import TemaVeintiunoView from "./temarioViews/TemaVeintiunoView";
 import TemaVeintidosView from "./temarioViews/TemaVeintidosView";
+
 import TemaVeintitresView from "./temarioViews/TemaVeintitresView";
 import TemaVeinticuatroView from "./temarioViews/TemaVeinticuatroView";
+
 import TemaVeinticincoView from "./temarioViews/TemaVeinticincoView";
 import TemaVeintiseisView from "./temarioViews/TemaVeintiseisView";
 import TemaVeintisieteView from "./temarioViews/TemaVeintisieteView";
@@ -40,6 +47,7 @@ import TemaTreitaView from "./temarioViews/TemaTreitaView";
 import TemaTreitayunoView from "./temarioViews/TemaTreitayunoView";
 import TemaTreitaydosView from "./temarioViews/TemaTreitaydosView";
 import TemaTreitaytresView from "./temarioViews/TemaTreitaytresView";
+
 import Actividades from "./temarioViews/Actividades";
 import Actividad1View from "./temarioViews/Actividad1View";
 import Actividad2View from "./temarioViews/Actividad2View";

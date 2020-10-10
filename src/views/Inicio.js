@@ -40,6 +40,7 @@ import TemaTreitaView from "./temarioViews/TemaTreitaView";
 import TemaTreitayunoView from "./temarioViews/TemaTreitayunoView";
 import TemaTreitaydosView from "./temarioViews/TemaTreitaydosView";
 import TemaTreitaytresView from "./temarioViews/TemaTreitaytresView";
+import Actividades from "./temarioViews/Actividades";
 import Actividad1View from "./temarioViews/Actividad1View";
 import Actividad2View from "./temarioViews/Actividad2View";
 import Actividad3View from "./temarioViews/Actividad3View";
@@ -142,19 +143,21 @@ class Inicio extends Component {
           ) : this.state.index === 34 ? (
             <TemaTreitaytresView />
           ) : this.state.index === 35 ? (
-            <Actividad1View />
+            <Actividades />
           ) : this.state.index === 36 ? (
-            <Actividad2View />
+            <Actividad1View />
           ) : this.state.index === 37 ? (
-            <Actividad3View />
+            <Actividad2View />
           ) : this.state.index === 38 ? (
-            <Actividad4View />
+            <Actividad3View />
           ) : this.state.index === 39 ? (
+            <Actividad4View />
+          ) : this.state.index === 40 ? (
             <Fin />
           ) : null}
           <br />
           <CardFooter>
-            <Navegador handleNavigation={this.setIndex} maxIndex={39} />
+            <Navegador handleNavigation={this.setIndex} maxIndex={40} />
           </CardFooter>
         </Card>
       </div>

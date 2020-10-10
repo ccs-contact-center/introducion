@@ -10,7 +10,7 @@ class TemaVeinteView extends Component {
     return (
       <div className="animated fadeIn ">
         <CardHeader className="text-left">
-          <h3> 1.4 ¿Qué es lo que hace un Centro de Contacto?</h3>
+          <h3> 1.5 ¿Funciones de un Agente Telefónico?</h3>
         </CardHeader>
         <CardBody className="">
           <Row className="centrado-fila">

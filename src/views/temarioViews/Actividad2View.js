@@ -215,3 +215,6 @@ class ActividadView extends Component {
   }
 }
 export default ActividadView;
+
+
+

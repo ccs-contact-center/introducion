@@ -55,6 +55,10 @@ import Actividad3View from "./temarioViews/Actividad3View";
 import Actividad4View from "./temarioViews/Actividad4View";
 import Fin from "./temarioViews/Fin";
 
+import Formulario2View from './temarioViews/formulario2View'
+
+
+
 //import RecapitulacionView from './temarioViews/RecapitulacionView'
 
 class Inicio extends Component {
@@ -80,8 +84,7 @@ class Inicio extends Component {
         <Card>
           {this.state.index === 0 ? (
             <BienvenidaView />
-          ) : // < />
-          //
+          ) : 
           this.state.index === 1 ? (
             <ObjetivoView />
           ) : this.state.index === 2 ? (
@@ -161,11 +164,13 @@ class Inicio extends Component {
           ) : this.state.index === 39 ? (
             <Actividad4View />
           ) : this.state.index === 40 ? (
-            <Fin />
+            < Formulario2View />
+          ) : this.state.index === 41 ? (
+            < Fin/>
           ) : null}
           <br />
           <CardFooter>
-            <Navegador handleNavigation={this.setIndex} maxIndex={40} />
+            <Navegador handleNavigation={this.setIndex} maxIndex={41} />
           </CardFooter>
         </Card>
       </div>

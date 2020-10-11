@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   CardBody,
   CardHeader,
@@ -9,103 +9,81 @@ import {
   FormGroup,
   Label,
   Input,
-} from 'reactstrap'
-
-import API_CCS from '../../services/API_CCS'
-const API = new API_CCS()
+} from "reactstrap";
+import swal from "sweetalert";
+import API_CCS from "../../services/API_CCS";
+const API = new API_CCS();
 
 class Formulario2View extends Component {
   loading = () => (
     <div className="animated fadeIn pt-1 text-center">Cargando...</div>
-  )
+  );
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      pregunta1: '',
-      pregunta2: '',
-      pregunta3: '',
-      pregunta4: '',
-      pregunta5: '',
-      pregunta6: '',
-      acept: '',
-      message: '',
-    }
+      pregunta1: "",
+      pregunta2: "",
+      pregunta3: "",
+      pregunta4: "",
+      pregunta5: "",
+      pregunta6: "",
+      acept: "",
+      message: "",
+    };
   }
 
   onChange(e) {
-    if (e.target.name === 'acept') {
+    if (e.target.name === "acept") {
       this.setState({
         [e.target.name]: e.target.checked,
-      })
+      });
     } else {
       this.setState({
         [e.target.name]: e.target.value,
-      })
+      });
     }
   }
 
   async onSave(e) {
-    /*
-    Aqui hay varios puntos... primero, debes de cachar la respuesta de tu llamada a la api en algun lado, podria quedar asi:
+    try {
+      var respuesta = await API.guardaActividad(this.state);
 
+      swal({
+        title: "Status Encuesta",
+        text: "Se guardo en cuesta, con id: " + respuesta[0].id,
+        icon: "success",
+        dangerMode: true,
+        button: {
+          text: "Aceptar",
+          value: true,
+          visible: true,
+          className: "btn btn-primary",
+          reset: true,
+        },
+      });
 
-     var respuesta = API.insertarEncuesta(this.state)
-          .then((res)=>{
-            return res[0].id
-          })
-          .then((res)=>{
-            alert("Se guardo la encuesta número " + res[0].id) 
-          })
-          .error((err)=>{
-            console.log("loggea si hay un error")
-          })
-
-
-    Pero hay otra manera mas facil y es haciendo async la función... Quedaría asi:
-    
-
-    (Linea 48) async onSave(e){ (... todo lo demas)
-
-    
-    */
-
-    if (!this.validate()) {
-      try {
-        var respuesta = await API.insertarEncuesta(this.state)
-        alert('Se guardo la encuesta número ' + respuesta[0].id)
-      } catch (err) {
-        console.log('loggea si hay un error')
-      }
-    } else {
+      // alert("Se guardo la actividad: 1, con id: " + respuesta[0].id);
+    } catch (err) {
+      swal({
+        title: "Status Encuesta",
+        text: "Encuesta no guardada, Intenta de nuevo. ",
+        icon: "error",
+        dangerMode: true,
+        button: {
+          text: "Cerrar",
+          value: true,
+          visible: true,
+          className: "btn btn-primary ",
+        },
+      });
+      console.log("loggea si hay un error");
     }
-    //Aqui deberias hacer algo si no está validado el form
-    //
-
-    if (!this.validate()) {
-      return
-    }
-    this.setState({
-      message: 'Guardado.....',
-    })
   }
-
-  validate(e) {
-    if (this.state.acept !== true) {
-      this.setState({
-        message: 'Dé en  aceptar',
-      
-      })
-    }
-    alert(this.state.message);
-  }
-
 
   render() {
     return (
       <div className="animated fadeIn">
-        
-
         <Row>
           <Col>
             <CardHeader className="">
@@ -122,11 +100,11 @@ class Formulario2View extends Component {
                 Desacuerdo, y 1- Totalmente en Desacuerdo.
               </p>
               <Form onSubmit={this.handleSubmit}>
-                <div className="cajaA2" style={{ backgroundColor: '#d5d4d8' }}>
+                <div className="cajaA2" style={{ backgroundColor: "#d5d4d8" }}>
                   <FormGroup tag="fieldset">
                     <legend className="col-form-label ml-2">
-                      <b>¿El acceso al curso resultó fácil?</b>{' '}
-                      <span style={{ color: 'red' }}>*</span>
+                      <b>¿El acceso al curso resultó fácil?</b>{" "}
+                      <span style={{ color: "red" }}>*</span>
                     </legend>
                     <FormGroup check>
                       <Label check>
@@ -137,7 +115,7 @@ class Formulario2View extends Component {
                           value="1"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Excelente
                       </Label>
                     </FormGroup>
@@ -150,7 +128,7 @@ class Formulario2View extends Component {
                           value="2"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Bueno
                       </Label>
                     </FormGroup>
@@ -163,7 +141,7 @@ class Formulario2View extends Component {
                           value="3"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Malo
                       </Label>
                     </FormGroup>
@@ -176,7 +154,7 @@ class Formulario2View extends Component {
                           value="4"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Pésimo
                       </Label>
                     </FormGroup>
@@ -184,15 +162,15 @@ class Formulario2View extends Component {
                 </div>
                 <div
                   className="cajaA2 mt-3"
-                  style={{ backgroundColor: '#d5d4d8' }}
+                  style={{ backgroundColor: "#d5d4d8" }}
                 >
                   <FormGroup tag="fieldset">
                     <legend className="col-form-label ml-2">
                       <b>
                         ¿El material que se proporcionó en el curso fue el
                         adecuado para el entendimiento del mismo?
-                      </b>{' '}
-                      <span style={{ color: 'red' }}>*</span>
+                      </b>{" "}
+                      <span style={{ color: "red" }}>*</span>
                     </legend>
                     <FormGroup check>
                       <Label check>
@@ -203,7 +181,7 @@ class Formulario2View extends Component {
                           value="1"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Totalmente de acuerdo
                       </Label>
                     </FormGroup>
@@ -216,7 +194,7 @@ class Formulario2View extends Component {
                           value="2"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         De acuerdo
                       </Label>
                     </FormGroup>
@@ -229,7 +207,7 @@ class Formulario2View extends Component {
                           value="3"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         En desacuerdo
                       </Label>
                     </FormGroup>
@@ -242,7 +220,7 @@ class Formulario2View extends Component {
                           value="4"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Totalmente en desacuerdo
                       </Label>
                     </FormGroup>
@@ -250,15 +228,15 @@ class Formulario2View extends Component {
                 </div>
                 <div
                   className="cajaA2 mt-3"
-                  style={{ backgroundColor: '#d5d4d8' }}
+                  style={{ backgroundColor: "#d5d4d8" }}
                 >
                   <FormGroup tag="fieldset">
                     <legend className="col-form-label ml-2">
                       <b>
                         ¿Considero que comprendí adecuadamente todos los temas
                         abordaos y no me quedaron dudas?
-                      </b>{' '}
-                      <span style={{ color: 'red' }}>*</span>
+                      </b>{" "}
+                      <span style={{ color: "red" }}>*</span>
                     </legend>
                     <FormGroup check>
                       <Label check>
@@ -269,7 +247,7 @@ class Formulario2View extends Component {
                           value="1"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Totalmente de acuerdo
                       </Label>
                     </FormGroup>
@@ -282,7 +260,7 @@ class Formulario2View extends Component {
                           value="2"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         De acuerdo
                       </Label>
                     </FormGroup>
@@ -295,7 +273,7 @@ class Formulario2View extends Component {
                           value="3"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         En desacuerdo
                       </Label>
                     </FormGroup>
@@ -308,7 +286,7 @@ class Formulario2View extends Component {
                           value="4"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Totalmente en desacuerdo
                       </Label>
                     </FormGroup>
@@ -317,15 +295,15 @@ class Formulario2View extends Component {
 
                 <div
                   className="cajaA2 mt-3"
-                  style={{ backgroundColor: '#d5d4d8' }}
+                  style={{ backgroundColor: "#d5d4d8" }}
                 >
                   <FormGroup tag="fieldset">
                     <legend className="col-form-label ml-2">
                       <b>
                         ¿La plataforma del curso es amigable y no presentó
                         fallas en su funcionamiento?
-                      </b>{' '}
-                      <span style={{ color: 'red' }}>*</span>
+                      </b>{" "}
+                      <span style={{ color: "red" }}>*</span>
                     </legend>
                     <FormGroup check>
                       <Label check>
@@ -336,7 +314,7 @@ class Formulario2View extends Component {
                           value="1"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Totalmente de acuerdo
                       </Label>
                     </FormGroup>
@@ -349,7 +327,7 @@ class Formulario2View extends Component {
                           value="2"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         De acuerdo
                       </Label>
                     </FormGroup>
@@ -362,7 +340,7 @@ class Formulario2View extends Component {
                           value="3"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         En desacuerdo
                       </Label>
                     </FormGroup>
@@ -375,7 +353,7 @@ class Formulario2View extends Component {
                           value="4"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Totalmente en desacuerdo
                       </Label>
                     </FormGroup>
@@ -384,12 +362,12 @@ class Formulario2View extends Component {
 
                 <div
                   className="cajaA2 mt-3"
-                  style={{ backgroundColor: '#d5d4d8' }}
+                  style={{ backgroundColor: "#d5d4d8" }}
                 >
                   <FormGroup tag="fieldset">
                     <legend className="col-form-label ml-2">
-                      <b>De manera general, ¿Cómo calificaría el cuso?</b>{' '}
-                      <span style={{ color: 'red' }}>*</span>
+                      <b>De manera general, ¿Cómo calificaría el cuso?</b>{" "}
+                      <span style={{ color: "red" }}>*</span>
                     </legend>
                     <FormGroup check>
                       <Label check>
@@ -400,7 +378,7 @@ class Formulario2View extends Component {
                           value="1"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Excelente
                       </Label>
                     </FormGroup>
@@ -413,7 +391,7 @@ class Formulario2View extends Component {
                           value="2"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Bueno
                       </Label>
                     </FormGroup>
@@ -426,7 +404,7 @@ class Formulario2View extends Component {
                           value="3"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Malo
                       </Label>
                     </FormGroup>
@@ -439,7 +417,7 @@ class Formulario2View extends Component {
                           value="4"
                           onChange={this.onChange.bind(this)}
                           required
-                        />{' '}
+                        />{" "}
                         Pésimo
                       </Label>
                     </FormGroup>
@@ -448,12 +426,12 @@ class Formulario2View extends Component {
 
                 <div
                   className="cajaA2 mt-3"
-                  style={{ backgroundColor: '#d5d4d8' }}
+                  style={{ backgroundColor: "#d5d4d8" }}
                 >
                   <FormGroup>
                     <Label htmlFor="textarea">
-                      <b> Deja tú opinión.</b>{' '}
-                      <span style={{ color: 'red' }}>*</span>
+                      <b> Deja tú opinión.</b>{" "}
+                      <span style={{ color: "red" }}>*</span>
                     </Label>
                     <Input
                       type="textarea"
@@ -489,7 +467,6 @@ class Formulario2View extends Component {
                       Enviar
                     </Button>
                   </Col>
-                  
                 </FormGroup>
 
                 {/* <p>{JSON.stringify(this.state)}</p> */}
@@ -498,7 +475,7 @@ class Formulario2View extends Component {
           </Col>
         </Row>
       </div>
-    )
+    );
   }
 }
-export default Formulario2View
+export default Formulario2View;

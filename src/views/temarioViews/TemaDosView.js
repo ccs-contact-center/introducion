@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { CardBody, Col, Row, CardHeader } from "reactstrap";
 
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 
 class TemaDosView extends Component {
   loading = () => (

@@ -49,7 +49,7 @@ class TemaDosView extends Component {
                     className="cajaGris
                    ml-2 mr-2 mt-3"
                   >
-                    <ReactPlayer url="https://www.youtube.com/watch?v=htqByzHGzGU" />
+                    {/*<ReactPlayer url="https://www.youtube.com/watch?v=htqByzHGzGU" />*/}
                   </div>
                 </Col>
                 <Col xs="12" className="mt-3">
